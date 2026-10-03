@@ -1,0 +1,55 @@
+{
+  "version": 1,
+  "pages": [
+    {
+      "slug": "sommerfest-anmeldung",
+      "component": "SommerfestAnmeldung",
+      "title": "Anmeldung zum Sommerfest",
+      "endpoints": [
+        {
+          "entity": "anmeldungen",
+          "op": "list",
+          "fields": [
+            "vorname",
+            "anzahl_personen",
+            "buffet_art"
+          ],
+          "scope_description": "zeigt alle Anmeldungen (nur Vorname, Personenzahl und Buffet-Beitrag)",
+          "max_records": 500
+        },
+        {
+          "entity": "festdetails",
+          "op": "list",
+          "fields": [
+            "titel",
+            "datum",
+            "strasse",
+            "hausnummer",
+            "plz",
+            "ort",
+            "beschreibung"
+          ],
+          "scope": "r.v_datum >= now()",
+          "scope_description": "zeigt nur Feste, die noch nicht begonnen haben",
+          "max_records": 50
+        },
+        {
+          "entity": "anmeldungen",
+          "op": "create",
+          "fields": [
+            "fest",
+            "vorname",
+            "nachname",
+            "email",
+            "anzahl_personen",
+            "kinder_dabei",
+            "anzahl_kinder",
+            "buffet_art",
+            "buffet_beschreibung",
+            "anmerkungen"
+          ]
+        }
+      ]
+    }
+  ]
+}
