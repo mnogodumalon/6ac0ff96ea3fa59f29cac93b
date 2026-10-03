@@ -1,4 +1,25 @@
 {
   "version": 1,
-  "pages": []
+  "pages": [
+    {
+      "slug": "sommerfest-anmeldung",
+      "type": "custom",
+      "entity": "anmeldungen",
+      "title": "Anmeldung zum Sommerfest",
+      "published": false,
+      "fields": [
+        "fest",
+        "vorname",
+        "nachname",
+        "email",
+        "anzahl_personen",
+        "kinder_dabei",
+        "anzahl_kinder",
+        "buffet_art",
+        "buffet_beschreibung",
+        "anmerkungen"
+      ],
+      "policy": null
+    }
+  ]
 }

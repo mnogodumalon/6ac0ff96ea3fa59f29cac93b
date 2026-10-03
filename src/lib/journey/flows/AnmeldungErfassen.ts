@@ -1,7 +1,7 @@
 /**
  * useAnmeldungErfassenFlow — the plumbing of the flow « Anmeldung erfassen », generated from the plan.
  *
- * Writes `anmeldungen`: asks `fest`, `vorname`, `nachname`, `email`, `anzahl_personen`, `kinder_dabei`, `anzahl_kinder`, `buffet_art`, `buffet_beschreibung`, `anmerkungen`.
+ * Writes `anmeldungen`: asks `fest`, `email`, `vorname`, `nachname`, `buffet_art`, `anmerkungen`, `kinder_dabei`, `anzahl_kinder`, `anzahl_personen`, `buffet_beschreibung`.
  * The hook OWNS: the form(s) with exactly these fields and the plan's required
  * ingredients, one record search per picked field (columns and filter from
  * the plan), and the submit plan with its fixed and derived values. A page
@@ -16,20 +16,20 @@
  *   messages  the sentence for an empty required field, per field
  *
  *   const flow = useAnmeldungErfassenFlow({
- *     steps: { fest: 1, vorname: 2, nachname: 2, email: 2, anzahl_personen: 2, kinder_dabei: 2, anzahl_kinder: 2, buffet_art: 2, buffet_beschreibung: 2, anmerkungen: 2 },
+ *     steps: { fest: 1, email: 2, vorname: 2, nachname: 2, buffet_art: 2, anmerkungen: 2, kinder_dabei: 2, anzahl_kinder: 2, anzahl_personen: 2, buffet_beschreibung: 2 },
  *     items: { fest: r => ({ id: r.id, title: fieldText(r, 'titel') }) },
  *   });
  *   <IntentWizardShell forms={flow.forms} draftKey={flow.draftKey} …>
  *     <EntitySelectStep {...flow.picks.fest.select} {...flow.pick('fest')} />
+ *     <Bound form={flow.forms.anmeldungen} name="email" />
  *     <Bound form={flow.forms.anmeldungen} name="vorname" />
  *     <Bound form={flow.forms.anmeldungen} name="nachname" />
- *     <Bound form={flow.forms.anmeldungen} name="email" />
- *     <Bound form={flow.forms.anmeldungen} name="anzahl_personen" />
+ *     <Bound form={flow.forms.anmeldungen} name="buffet_art" />
+ *     <Bound form={flow.forms.anmeldungen} name="anmerkungen" />
  *     <Bound form={flow.forms.anmeldungen} name="kinder_dabei" />
  *     <Bound form={flow.forms.anmeldungen} name="anzahl_kinder" />
- *     <Bound form={flow.forms.anmeldungen} name="buffet_art" />
+ *     <Bound form={flow.forms.anmeldungen} name="anzahl_personen" />
  *     <Bound form={flow.forms.anmeldungen} name="buffet_beschreibung" />
- *     <Bound form={flow.forms.anmeldungen} name="anmerkungen" />
  *     <StepNav onNext={() => flow.validateStep(n)} />
  *     {!flow.submit.done && <SummaryStep forms={flow.formList} submit={flow.submit} />}
  *     {flow.submit.result && <SuccessStep result={flow.submit.result} forms={flow.formList} submit={flow.submit} />}
@@ -95,10 +95,10 @@ function hasValues(form: StepForm): boolean {
 export function useAnmeldungErfassenFlow(options: AnmeldungErfassenFlowOptions = {}) {
   const steps = { ...DEFAULT_STEPS, ...(options.steps ?? {}) } as Record<string, number>;
   const anmeldungen = useStepForm('anmeldungen', {
-    fields: ["fest", "vorname", "nachname", "email", "anzahl_personen", "kinder_dabei", "anzahl_kinder", "buffet_art", "buffet_beschreibung", "anmerkungen"],
-    steps: only(steps, ["fest", "vorname", "nachname", "email", "anzahl_personen", "kinder_dabei", "anzahl_kinder", "buffet_art", "buffet_beschreibung", "anmerkungen"]) as Record<string, number>,
-    initial: only(options.initial as FormValues | undefined, ["fest", "vorname", "nachname", "email", "anzahl_personen", "kinder_dabei", "anzahl_kinder", "buffet_art", "buffet_beschreibung", "anmerkungen"]),
-    messages: only(options.messages as Record<string, string> | undefined, ["fest", "vorname", "nachname", "email", "anzahl_personen", "kinder_dabei", "anzahl_kinder", "buffet_art", "buffet_beschreibung", "anmerkungen"]),
+    fields: ["fest", "email", "vorname", "nachname", "buffet_art", "anmerkungen", "kinder_dabei", "anzahl_kinder", "anzahl_personen", "buffet_beschreibung"],
+    steps: only(steps, ["fest", "email", "vorname", "nachname", "buffet_art", "anmerkungen", "kinder_dabei", "anzahl_kinder", "anzahl_personen", "buffet_beschreibung"]) as Record<string, number>,
+    initial: only(options.initial as FormValues | undefined, ["fest", "email", "vorname", "nachname", "buffet_art", "anmerkungen", "kinder_dabei", "anzahl_kinder", "anzahl_personen", "buffet_beschreibung"]),
+    messages: only(options.messages as Record<string, string> | undefined, ["fest", "email", "vorname", "nachname", "buffet_art", "anmerkungen", "kinder_dabei", "anzahl_kinder", "anzahl_personen", "buffet_beschreibung"]),
   });
   const forms: AnmeldungErfassenForms = { anmeldungen };
   const formList: StepForm[] = [anmeldungen];

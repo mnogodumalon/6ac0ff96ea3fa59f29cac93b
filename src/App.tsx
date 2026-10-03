@@ -16,6 +16,7 @@ import AppMap from '@/pages/AppMap';
 // <custom:imports>
 const IntentAnmeldungErfassenPage = lazy(() => import('@/pages/intents/AnmeldungErfassenPage'));
 import { DashboardSkeleton } from '@/components/DashboardStates';
+const IntentAnmeldungStornierenPage = lazy(() => import('@/pages/intents/AnmeldungStornierenPage'));
 // </custom:imports>
 
 // Lazy: public pages live outside <Layout> and only load on /#/public/:slug —
@@ -88,6 +89,7 @@ export default function App() {
                 <Route path="verwaltung/oeffentliche-seiten/:slug/felder" element={<PublicPageFields />} />
                 {/* <custom:routes> */}
                 <Route path="intents/anmeldung-erfassen" element={<Suspense fallback={<DashboardSkeleton />}><IntentAnmeldungErfassenPage /></Suspense>} />
+                <Route path="intents/anmeldung-stornieren" element={<Suspense fallback={<DashboardSkeleton />}><IntentAnmeldungStornierenPage /></Suspense>} />
                 {/* </custom:routes> */}
                 {/* An unknown hash (a bookmark from before a rebuild renamed the
                     flows, a mistyped link) must not be a blank page. */}

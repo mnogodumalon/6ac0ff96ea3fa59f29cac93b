@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "flows": [
+    {
+      "path": "/intents/anmeldung-erfassen",
+      "label": "Anmeldung erfassen",
+      "description": "Anmeldung zum Fest aufnehmen: Fest, Personen, Kinder und Buffet-Beitrag",
+      "file": "src/pages/intents/AnmeldungErfassenPage.tsx",
+      "summary": "/**\n * Anmeldung erfassen — 4-Schritt-Wizard + Prüfen.\n * Steps: 1) Fest wählen → 2) Name und E-Mail → 3) Personen und Kinder → 4) Buffet-Beitrag → Prüfen & anlegen.\n * Reads: festdetails. Writes: anmeldungen (via useAnmeldungErfassenFlow).\n * Composes: IntentWizardShell, EntitySelectStep, Bound, StepNav, SummaryStep, SuccessStep.\n */",
+      "components": [
+        "Bound",
+        "EntitySelectStep",
+        "IntentWizardShell",
+        "StepNav",
+        "SuccessStep",
+        "SummaryStep",
+        "WizardStep"
+      ],
+      "writes": []
+    }
+  ],
+  "unregistered_pages": []
+}

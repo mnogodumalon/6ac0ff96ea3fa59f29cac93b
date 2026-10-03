@@ -20,7 +20,7 @@
 import type { ComponentType } from 'react';
 
 // <custom:intent-imports>
-import { IconUserPlus } from '@tabler/icons-react';
+import { IconUserPlus, IconCalendarX } from '@tabler/icons-react';
 // </custom:intent-imports>
 
 export interface IntentLink {
@@ -44,6 +44,7 @@ export interface IntentLink {
 export const INTENTS: IntentLink[] = [
   // <custom:intents>
   { path: '/intents/anmeldung-erfassen', label: { de: 'Anmeldung erfassen', en: 'Register a guest' }, icon: IconUserPlus, description: 'Anmeldung zum Fest aufnehmen: Fest, Personen, Kinder und Buffet-Beitrag' },
+  { path: '/intents/anmeldung-stornieren', label: { de: 'Anmeldung stornieren', en: 'Cancel registration' }, icon: IconCalendarX, description: 'Anmeldung auswählen, Grund angeben und stornieren' },
   // </custom:intents>
 ];
 
