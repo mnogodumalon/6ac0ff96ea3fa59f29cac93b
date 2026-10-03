@@ -1,0 +1,18 @@
+{
+  "entities": {
+    "Festdetails": {
+      "placeholders_set": 7,
+      "defaults_keys": [],
+      "computed_keys": [],
+      "reason": "Reine Stammdaten eines Festes ohne numerische Felder, daher keine Formeln; das Datum bekommt keinen Standardwert, da es ein künftiger Termin ist."
+    },
+    "Anmeldungen": {
+      "placeholders_set": 9,
+      "defaults_keys": [
+        "anzahl_personen"
+      ],
+      "computed_keys": [],
+      "reason": "Keine Formeln, da Personen- und Kinderzahl Eingaben sind und kein Preis oder Datumspaar vorliegt."
+    }
+  }
+}

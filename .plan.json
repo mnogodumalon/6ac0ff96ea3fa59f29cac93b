@@ -1,0 +1,167 @@
+{
+  "version": 1,
+  "language": "de",
+  "understanding": {
+    "summary": "Eine kleine Anwendung für das Sommerfest des Sportvereins im Juli. Gäste melden sich mit der Zahl der Personen, dem Hinweis auf Kinder und ihrem Buffet-Beitrag an. Auf der Anmeldeseite sehen alle, wie viele sich schon angemeldet haben. Das Organisationsteam behält die Anmeldungen und die Festdaten im Blick.",
+    "roles": [
+      "Organisationsteam des Vereins",
+      "Gäste (Vereinsmitglieder und Angehörige)"
+    ],
+    "main_tasks": [
+      "Festdetails pflegen (Datum, Ort, Beschreibung)",
+      "Anmeldungen von Gästen entgegennehmen",
+      "Überblick über Teilnehmerzahl, Kinder und Buffet-Beiträge behalten"
+    ],
+    "platform_roles": [
+      {
+        "persona": "Organisationsteam des Vereins",
+        "role": "datenverarbeitung",
+        "apps": [
+          "festdetails",
+          "anmeldungen"
+        ]
+      }
+    ]
+  },
+  "flows": [
+    {
+      "slug": "anmeldung-erfassen",
+      "label": {
+        "de": "Anmeldung erfassen",
+        "en": "Register a guest"
+      },
+      "description": "Das Organisationsteam nimmt eine Anmeldung auf, zum Beispiel telefonisch oder im Vereinsheim: Fest wählen, Personen, Kinder und Buffet-Beitrag erfassen.",
+      "priority": "must",
+      "writes": [
+        {
+          "entity": "anmeldungen",
+          "op": "create",
+          "when": "always",
+          "fields": {
+            "fest": "picked",
+            "vorname": "user",
+            "nachname": "user",
+            "email": "user",
+            "anzahl_personen": "user",
+            "kinder_dabei": "user",
+            "anzahl_kinder": "user",
+            "buffet_art": "user",
+            "buffet_beschreibung": "user",
+            "anmerkungen": "user"
+          },
+          "needs": {}
+        }
+      ],
+      "required": [],
+      "brief": "# Flow `anmeldung-erfassen` — Anmeldung erfassen\nDas Organisationsteam nimmt eine Anmeldung auf, zum Beispiel telefonisch oder im Vereinsheim: Fest wählen, Personen, Kinder und Buffet-Beitrag erfassen.\n\n## Your hook — import it, never rebuild what it owns\n`import { useAnmeldungErfassenFlow } from '@/lib/journey/flows/AnmeldungErfassen';` — generated from the Schreibliste below. It OWNS the form(s), one record search per picked field (columns and filter from the plan) and the submit plan with every fixed and derived value. You compose: `flow.forms.<entity>` for <Bound>/<Field>, `{...flow.picks.<field>.select} {...flow.pick('<field>')}` (or `flow.pickMany` for a multi pick) for <EntitySelectStep>, `flow.validateStep(n)` in StepNav.onNext, `flow.submit` + `flow.formList` for SummaryStep/SuccessStep, `flow.reset()`. Options: `steps` (field → step), `items` (how a hit reads, per pick: fest), `initial`, `messages`. The hook's docblock in .lane-context.md shows the exact call. Never import servicePort, useStepForm, useJourneySubmit, useRecordSearch or useDashboardData in this page — check-intents refuses a page that uses the hook and any of them.\n\n## Steps (in this order)\n1. Fest aus der Liste wählen\n2. Name und E-Mail erfassen\n3. Anzahl der Personen und Kinder angeben\n4. Buffet-Beitrag auswählen und beschreiben\n\n## Schreibliste — the ONLY writes this flow makes (the gate compares your plan steps with this list)\n- creates `anmeldungen`:\n    - `fest`: from the record the user picks in this flow\n    - `vorname`: the user enters it (bind it through the layer: form.field/…)\n    - `nachname`: the user enters it (bind it through the layer: form.field/…)\n    - `email`: the user enters it (bind it through the layer: form.field/…)\n    - `anzahl_personen`: the user enters it (bind it through the layer: form.field/…)\n    - `kinder_dabei`: the user enters it (bind it through the layer: form.field/…)\n    - `anzahl_kinder`: the user enters it (bind it through the layer: form.field/…)\n    - `buffet_art`: the user enters it (bind it through the layer: form.field/…)\n    - `buffet_beschreibung`: the user enters it (bind it through the layer: form.field/…)\n    - `anmerkungen`: the user enters it (bind it through the layer: form.field/…)\n\n## Reads\n- `festdetails` columns titel, datum, ort\n\n## Checks BEFORE the write (block the submit with the message when they fail)\n- required_context (field=`anmeldungen.fest`) — message: „Bitte zuerst ein Fest auswählen.“\n\n## Success page\n- shows: `anmeldungen.nachname`, `anmeldungen.anzahl_personen`\n"
+    }
+  ],
+  "public_pages": [
+    {
+      "slug": "sommerfest-anmeldung",
+      "purpose": "Gäste melden sich zum Sommerfest an (Personen, Kinder, Buffet-Beitrag). Die Seite zeigt auch, wie viele sich schon angemeldet haben.",
+      "publish": true,
+      "lists": [
+        {
+          "entity": "anmeldungen",
+          "columns": [
+            "vorname",
+            "anzahl_personen",
+            "buffet_art"
+          ],
+          "filter": null,
+          "max_records": null
+        },
+        {
+          "entity": "festdetails",
+          "columns": [
+            "titel",
+            "datum",
+            "strasse",
+            "hausnummer",
+            "plz",
+            "ort",
+            "beschreibung"
+          ],
+          "filter": {
+            "mode": "all",
+            "conditions": [
+              {
+                "field": "datum",
+                "op": "gte",
+                "value": {
+                  "rel": "today"
+                }
+              }
+            ]
+          },
+          "max_records": null
+        }
+      ],
+      "creates": [
+        {
+          "entity": "anmeldungen",
+          "fields": {
+            "fest": "user",
+            "vorname": "user",
+            "nachname": "user",
+            "email": "user",
+            "anzahl_personen": "user",
+            "kinder_dabei": "user",
+            "anzahl_kinder": "user",
+            "buffet_art": "user",
+            "buffet_beschreibung": "user",
+            "anmerkungen": "user"
+          },
+          "fixed": {}
+        }
+      ],
+      "brief": "# Public page `sommerfest-anmeldung`\nGäste melden sich zum Sommerfest an (Personen, Kinder, Buffet-Beitrag). Die Seite zeigt auch, wie viele sich schon angemeldet haben.\n\n## Lists (declare exactly these in the surface)\n- `anmeldungen`: columns `vorname`, `anzahl_personen`, `buffet_art`\n- `festdetails`: columns `titel`, `datum`, `strasse`, `hausnummer`, `plz`, `ort`, `beschreibung`, filter {\"mode\": \"all\", \"conditions\": [{\"field\": \"datum\", \"op\": \"gte\", \"value\": {\"rel\": \"today\"}}]}\n\n## Creates (declare exactly these in the surface)\n- `anmeldungen`: visitor fields `fest`, `vorname`, `nachname`, `email`, `anzahl_personen`, `kinder_dabei`, `anzahl_kinder`, `buffet_art`, `buffet_beschreibung`, `anmerkungen`\n\nPublish: yes\n"
+    }
+  ],
+  "tools": [],
+  "covered_by_platform": [
+    {
+      "wish": "Liste der Anmeldungen und Buffet-Beiträge einsehen und durchsuchen",
+      "feature": "list_page"
+    },
+    {
+      "wish": "Übersicht, wie viele was zum Buffet mitbringen",
+      "feature": "distribution_view"
+    },
+    {
+      "wish": "Anmeldungen als Liste für die Planung exportieren",
+      "feature": "csv_json_export"
+    },
+    {
+      "wish": "Festdetails und Anmeldungen von Hand bearbeiten",
+      "feature": "record_form"
+    }
+  ],
+  "ownership": {
+    "anmeldungen": {
+      "fest": "intent:anmeldung-erfassen",
+      "vorname": "intent:anmeldung-erfassen",
+      "nachname": "intent:anmeldung-erfassen",
+      "email": "intent:anmeldung-erfassen",
+      "anzahl_personen": "intent:anmeldung-erfassen",
+      "kinder_dabei": "intent:anmeldung-erfassen",
+      "anzahl_kinder": "intent:anmeldung-erfassen",
+      "buffet_art": "intent:anmeldung-erfassen",
+      "buffet_beschreibung": "intent:anmeldung-erfassen",
+      "anmerkungen": "intent:anmeldung-erfassen"
+    }
+  },
+  "dashboard": {
+    "focus": [
+      "Anzahl der Anmeldungen",
+      "Gesamtzahl der angemeldeten Personen",
+      "Anzahl der Kinder",
+      "Buffet-Beiträge nach Art"
+    ],
+    "hints": [
+      "Die Summe der Personen ist wichtiger als die Zahl der Anmeldungen, weil eine Anmeldung mehrere Personen umfassen kann.",
+      "Buffet-Beiträge nach Art zeigen, ob zum Beispiel Salate oder Kuchen fehlen."
+    ]
+  }
+}

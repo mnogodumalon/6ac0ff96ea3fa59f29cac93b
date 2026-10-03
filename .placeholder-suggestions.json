@@ -1,0 +1,22 @@
+{
+  "FestdetailsDialog.tsx": {
+    "datum": "Wann findet das Fest statt?",
+    "strasse": "z. B. Gartenweg",
+    "titel": "z. B. Sommerfest 2026",
+    "hausnummer": "z. B. 12a",
+    "plz": "z. B. 80331",
+    "ort": "z. B. München",
+    "beschreibung": "Was sollten Gäste wissen?"
+  },
+  "AnmeldungenDialog.tsx": {
+    "fest": "Welches Fest?",
+    "vorname": "z. B. Anna",
+    "nachname": "z. B. Müller",
+    "email": "z. B. anna@beispiel.de",
+    "anzahl_personen": "z. B. 4",
+    "anzahl_kinder": "z. B. 2",
+    "buffet_art": "z. B. Salat, Kuchen",
+    "buffet_beschreibung": "z. B. Nudelsalat mit Pesto",
+    "anmerkungen": "Allergien, Wünsche, Hinweise"
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "pages": {
+    "en": {
+      "Alle Bereiche sind abgedeckt": "All categories are covered",
+      "Angemeldete Personen": "Registered people",
+      "Anmeldung erfassen": "Add registration",
+      "Anmeldungen": "Registrations",
+      "Anmeldungen (gefiltert)": "Registrations (filtered)",
+      "Art": "Type",
+      "Bearbeiten": "Edit",
+      "Buffet-Beiträge nach Art": "Buffet contributions by type",
+      "Das Fest": "The party",
+      "Es fehlen noch: {0}": "Still missing: {0}",
+      "Festdetails anlegen": "Create party details",
+      "Kinder": "Children",
+      "Letzte Anmeldungen": "Latest registrations",
+      "Noch keine Anmeldung": "No registration yet",
+      "Noch keine Anmeldungen in dieser Ansicht.": "No registrations in this view yet.",
+      "Noch keine Anmeldungen — sobald sich jemand einträgt, siehst du es hier.": "No registrations yet — as soon as someone signs up, you'll see it here.",
+      "Ohne Name": "Unnamed",
+      "Zuletzt hat sich {0} angemeldet. Beim Buffet fehlen noch: {1}.": "Most recent registration: {0}. Still missing from the buffet: {1}.",
+      "Zuletzt hat sich {0} angemeldet. Das Buffet ist in allen Bereichen versorgt.": "Most recent registration: {0}. The buffet is covered in all categories.",
+      "{0} Anmeldungen mit Kindern": "{0} registrations with children",
+      "{0} Erwachsene, {1} Kinder": "{0} adults, {1} children",
+      "{0} Personen": "{0} people",
+      "Ø {0} Personen pro Anmeldung": "Ø {0} people per registration"
+    }
+  },
+  "v": 1
+}
